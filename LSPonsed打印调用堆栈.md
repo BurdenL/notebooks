@@ -1,5 +1,6 @@
 打印调用堆栈
 
+```java
 {
     super.afterHookedMethod(param);
 
@@ -18,29 +19,46 @@
 ​        for (int i = 0; i < stackElements.length; i++) {
 
 ​            Log.i("Dump Stack" + i + ": ", stackElements[i].getClassName()
-                    + "----" + stackElements[i].getFileName()
-                                        + "----" + stackElements[i].getLineNumber()
-                    
-                            + "----" + stackElements[i].getMethodName());
-                    }
-        ​    }
-        ​    Log.i("Dump Stack: ", "---------------over----------------");
+​                    + "----" + stackElements[i].getFileName()
+​                                        + "----" + stackElements[i].getLineNumber()
+​                    
+​                            + "----" + stackElements[i].getMethodName());
+​                    }
+​        ​    }
+​        ​    Log.i("Dump Stack: ", "---------------over----------------");
+}
+```
 
 ​    // 方法二:
-​    new Exception().printStackTrace(); // 直接干脆
+​   
+
+```java
+ new Exception().printStackTrace(); // 直接干脆
+```
 
 ​    // 方法三:
-​    Thread.dumpStack(); // 直接暴力
+​    
+
+```java
+Thread.dumpStack(); // 直接暴力
+```
 
 ​    // 方法四:
-​    // 打印调用堆栈: http://blog.csdn.net/jk38687587/article/details/51752436
+​  
+
+```java
+  // 打印调用堆栈: http://blog.csdn.net/jk38687587/article/details/51752436
 ​    RuntimeException e = new RuntimeException("<Start dump Stack !>");
 ​    e.fillInStackTrace();
 ​    Log.i("<Dump Stack>:", "++++++++++++", e);
+```
 
 ​    // 方法五:
 ​    // Thread类的getAllStackTraces（）方法获取虚拟机中所有线程的StackTraceElement对象，可以查看堆栈
-​    for (Map.Entry<Thread, StackTraceElement[]> stackTrace : Thread.getAllStackTraces().entrySet()) {
+​  
+
+```java
+  for (Map.Entry<Thread, StackTraceElement[]> stackTrace : Thread.getAllStackTraces().entrySet()) {
 ​        Thread thread = (Thread) stackTrace.getKey();
 ​        StackTraceElement[] stack = (StackTraceElement[]) stackTrace.getValue();
 
@@ -54,13 +72,14 @@
 ​        for (StackTraceElement stackTraceElement : stack) {
 
 ​            Log.i("[Dump Stack]" + index + ": ", stackTraceElement.getClassName()
-                    + "----" + stackTraceElement.getFileName()
-                                        + "----" + stackTraceElement.getLineNumber()
-                                        + "----" + stackTraceElement.getMethodName());
-                        }
-                ​        // 增加序列号
-                ​        index++;
-        ​    }
-        ​    Log.i("[Dump Stack]", "********************* over **********************");
+​                    + "----" + stackTraceElement.getFileName()
+​                                        + "----" + stackTraceElement.getLineNumber()
+​                                        + "----" + stackTraceElement.getMethodName());
+​                        }
+​                ​        // 增加序列号
+​                ​        index++;
+​        ​    }
+​        ​    Log.i("[Dump Stack]", "********************* over **********************");
 }
+```
 
